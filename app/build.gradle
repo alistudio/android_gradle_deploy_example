@@ -3,27 +3,88 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "org.egret.android_template"
+        applicationId "com.guangzhouqianyou.sanqian.d6"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        flavorDimensions "versioncode"
         ndk {
             abiFilters 'armeabi','armeabi-v7a','arm64-v8a','x86'
         }
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    sourceSets.main{
+        jniLibs.srcDir 'libs'
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'd6'
+            keyPassword 'd6alias123456798'
+            storeFile file('../d6.jks')
+            storePassword 'd6123456798'
         }
     }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+
+        //未签名版release编译，用于给渠道出母包
+        release_unsigned {
+            zipAlignEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+        }
+        //签名版release编译，用于出测试包
+        release_signed.initWith(release_unsigned)
+        release_signed {
+            signingConfig signingConfigs.config
+        }
+    }
+
     sourceSets {
-        main {
+        inner_test {
+            assets.srcDirs = ['../assets']
+            jniLibs.srcDirs = ['libs']
+        }
+        outer_test {
             assets.srcDirs = ['../assets']
             jniLibs.srcDirs = ['libs']
         }
     }
+
+    productFlavors {
+        //内网测试包
+        inner_test {
+            manifestPlaceholders = [
+                    //applicationId "com.guangzhouqianyou.sanqian.d6"
+                    //versionCode 1
+                    //versionName "1.0"
+                    CHANNEL_ID: "inner_test",
+                    app_name:"内网测试",
+                    icon:"@mipmap/ic_launcher",
+                    sdk_name:"none",
+                    index_version:"http://play.dev.idlestack.com/newd6/main/index.html"
+            ]
+        }
+        //外网测试包
+        outer_test {
+//            applicationId "com.guangzhouqianyou.sanqian.d6"
+            manifestPlaceholders = [
+                    CHANNEL_ID: "outer_test",
+                    app_name:"外网测试",
+                    icon:"@mipmap/ic_launcher",
+                    sdk_name:"none",
+                    index_version:"http://play.dev.idlestack.com/newd6/main/index.html"
+            ]
+        }
+    }
+
     buildToolsVersion '26.0.2'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
