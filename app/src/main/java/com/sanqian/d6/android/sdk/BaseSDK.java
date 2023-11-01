@@ -69,7 +69,7 @@ public abstract class BaseSDK implements ISDK {
 
     @Override
     public void onLogout(JSONObject result) {
-        RunGameJsUtil.run("_onLogout",result.toString());
+        RunGameJsUtil.run("_onLogout_success",result.toString());
     }
 
     @Override

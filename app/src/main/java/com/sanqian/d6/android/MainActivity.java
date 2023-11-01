@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
             return;
         }
 
-        nativeAndroid.config.showFPS = true;
+        nativeAndroid.config.showFPS = false;
         nativeAndroid.config.fpsLogTime = 30;
         nativeAndroid.config.disableNativeRender = false;
         nativeAndroid.config.clearCache = false;

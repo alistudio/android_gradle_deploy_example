@@ -66,10 +66,10 @@ android {
                     //versionCode 1
                     //versionName "1.0"
                     CHANNEL_ID: "inner_test",
-                    app_name:"内网测试",
+                    app_name:"三国将魂内网测试",
                     icon:"@mipmap/ic_launcher",
                     sdk_name:"none",
-                    index_version:"http://play.dev.idlestack.com/newd6/main/index.html"
+                    index_version:"http://192.168.1.204/index.html"
             ]
         }
         //外网测试包
@@ -77,10 +77,10 @@ android {
 //            applicationId "com.guangzhouqianyou.sanqian.d6"
             manifestPlaceholders = [
                     CHANNEL_ID: "outer_test",
-                    app_name:"外网测试",
+                    app_name:"三国将魂外网测试",
                     icon:"@mipmap/ic_launcher",
                     sdk_name:"none",
-                    index_version:"http://play.dev.idlestack.com/newd6/main/index.html"
+                    index_version:"http://play.dev.idlestack.com/newd6/main"
             ]
         }
     }
