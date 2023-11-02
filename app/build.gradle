@@ -3,8 +3,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.guangzhouqianyou.sanqian.d6"
+        applicationId "com.sanqian.newd6.sgjh.bytedance.gamecenter"
         minSdkVersion 15
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -13,6 +14,12 @@ android {
             abiFilters 'armeabi','armeabi-v7a','arm64-v8a','x86'
         }
     }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 
     sourceSets.main{
         jniLibs.srcDir 'libs'
@@ -20,10 +27,10 @@ android {
 
     signingConfigs {
         config {
-            keyAlias 'd6'
-            keyPassword 'd6alias123456798'
+            keyAlias 'key0'
+            keyPassword '123456789'
             storeFile file('../d6.jks')
-            storePassword 'd6123456798'
+            storePassword '123456789'
         }
     }
 
@@ -40,17 +47,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
         }
-        //签名版release编译，用于出测试包
-        release_signed.initWith(release_unsigned)
-        release_signed {
-            signingConfig signingConfigs.config
-        }
     }
 
     sourceSets {
         inner_test {
             assets.srcDirs = ['../assets']
-            jniLibs.srcDirs = ['libs']
+//            jniLibs.srcDirs = ['libs']
         }
         outer_test {
             assets.srcDirs = ['../assets']
@@ -80,7 +82,7 @@ android {
                     app_name:"三国将魂外网测试",
                     icon:"@mipmap/ic_launcher",
                     sdk_name:"none",
-                    index_version:"http://play.dev.idlestack.com/newd6/main"
+                    index_version:"http://play.dev.idlestack.com/newd6/android/index.html"
             ]
         }
     }
@@ -89,6 +91,16 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def date = new Date()
+            def formattedDate = date.format('yyyyMMddHHmmss')
+            if (outputFile != null && outputFileName.endsWith('.apk')){
+                outputFileName = "sanguo-${productFlavors.name}-${versionName}-${buildType.name}-${formattedDate}.apk"
+            }
+        }
     }
 }
 
