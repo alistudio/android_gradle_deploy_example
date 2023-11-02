@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="domain_host">http://sdk.2y9y.com</string>
+    <string name="pgame_sdk_error_default">资源缺失</string>
+    <string name="com_game_version">1.2.0</string>
+    <string name="qy_game_id">y_00000000</string>
+    <string name="com_game_pvc">v_1</string>
+    <string name="com_pakage_num">主包</string>
+    <string name="com_game_channel">c_000000</string>
+    <string name="com_game_token">2e30d59561f238bd21e1081db9f22267</string>
+    <string name="com_game_name">sanguojh_q</string>
+</resources>

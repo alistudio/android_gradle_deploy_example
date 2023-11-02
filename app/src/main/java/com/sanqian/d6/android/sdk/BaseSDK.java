@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.Settings;
+import android.widget.Toast;
 
 import com.sanqian.d6.android.MainActivity;
 import com.sanqian.d6.android.sdk.common.utils.RunGameJsUtil;
@@ -16,8 +17,6 @@ import org.json.JSONObject;
 
 public abstract class BaseSDK implements ISDK {
     private static String deviceId;
-    private static final int requestPhoneStateCode = 10086;
-    public static final boolean pass = false; //是否跳过sdk各种验证
     protected MainActivity activity;
     protected  JSONObject initResult;
 
@@ -35,6 +34,7 @@ public abstract class BaseSDK implements ISDK {
         this.initResult = result;
         deviceId = Settings.Secure.getString(this.activity.getContentResolver(),Settings.Secure.ANDROID_ID);
         RunGameJsUtil.run("_initSdk_success",result.toString());
+        Toast.makeText(this.activity,"初始化成功", Toast.LENGTH_SHORT).show();
     }
 
 

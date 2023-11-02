@@ -10,6 +10,11 @@ public final class RunGameJsUtil {
 //    }
     public static EgretNativeAndroid nativeAndroid = null;
     public static void run(String method, String msg) {
-        nativeAndroid.callExternalInterface(method, msg);
+        try{
+            nativeAndroid.callExternalInterface(method, msg);
+        }
+        catch (Exception e){
+            Log.e("RungGameJsUtil", e.getMessage());
+        }
     }
 }

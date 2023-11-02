@@ -2,6 +2,7 @@ package com.sanqian.d6.android.sdk;
 
 import com.sanqian.d6.android.MainActivity;
 import com.sanqian.d6.android.sdk.issuers.NoneSDK;
+import com.sanqian.d6.android.sdk.issuers.QYSDK;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,18 +33,18 @@ public final class SDKManager {
     }
 
     enum SDKType {
-        gmSdk("none") {//默认
+        none("none") {//默认
             @Override
             protected BaseSDK create(MainActivity activity) {
                 return new NoneSDK(activity);
             }
         },
-//        p800("p800") {//默认
-//            @Override
-//            protected BaseSDK create(MainActivity activity) {
-//                return new P800SDK(activity);
-//            }
-//        },
+        QYSDK("QYSDK") {//默认
+            @Override
+            protected BaseSDK create(MainActivity activity) {
+                return new QYSDK(activity);
+            }
+        },
         ;
         private final String name;
 

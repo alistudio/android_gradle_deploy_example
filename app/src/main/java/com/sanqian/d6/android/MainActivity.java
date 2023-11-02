@@ -60,6 +60,7 @@ public class MainActivity extends Activity {
 
         MainActivity.sdkName = Utils.getMetaDataValue(this, "sdk_name");
         curSDK = SDKManager.getInstance().createSDK(MainActivity.sdkName, this);
+        curSDK.init();
         Date currentDate = new Date();
         String url = Utils.getMetaDataValue(this, "index_version")+"?v=" + currentDate.getTime();
         this.initEngine(url);

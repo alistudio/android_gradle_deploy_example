@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.sanqian.newd6.sgjh.bytedance.gamecenter"
+        applicationId "com.sanqian.newd6.sgjh"
         minSdkVersion 15
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 26
@@ -14,6 +14,15 @@ android {
             abiFilters 'armeabi','armeabi-v7a','arm64-v8a','x86'
         }
     }
+    //解决冲突
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
@@ -58,6 +67,12 @@ android {
             assets.srcDirs = ['../assets']
             jniLibs.srcDirs = ['libs']
         }
+        shoubin_fengche {
+            manifest.srcFile '../extra/shoubin_fengche_AndroidManifest.xml'
+            assets.srcDirs = ['../extra/shoubin_fengche_assets']
+            jniLibs.srcDirs = ['../extra/shoubin_fengche_libs']
+            res.srcDirs = ['../extra/shoubin_fengche_res']
+        }
     }
 
     productFlavors {
@@ -85,6 +100,18 @@ android {
                     index_version:"http://play.dev.idlestack.com/newd6/android/index.html"
             ]
         }
+
+        //手柄，风车
+        shoubin_fengche {
+            applicationId "com.sanguojh_q.game"
+            manifestPlaceholders = [
+                    CHANNEL_ID: "shoubin_fengche",
+                    app_name:"三国将魂",
+                    icon:"@mipmap/ic_launcher",
+                    sdk_name:"QYSDK",
+                    index_version:"https://resource.jieyougame.com/newd6/qianyou_android_ttgame/"
+            ]
+        }
     }
 
     buildToolsVersion '26.0.2'
@@ -104,6 +131,17 @@ android {
     }
 }
 
+def channel = ""
+gradle.startParameter.getTaskNames().each { task ->
+    if (task.toLowerCase().contains("shoubin_fengche")) {
+        channel = "shoubin_fengche"
+    }
+}
+
 dependencies {
     implementation(name: 'egret', ext: 'aar')
+//    为方便sdk的接入开发，过程中条件控制语句暂时屏蔽，当接入完成，打开条件控制语句，忽略代码提示的报错，不影响出包
+//    if (channel == "shoubin_fengche"){
+        implementation fileTree(dir: '../extra/shoubin_fengche_libs', include: ['*.jar'])
+//    }
 }
