@@ -187,7 +187,7 @@ public class QYSDK extends BaseSDK {
         try {
             JSONObject jsonObject = new JSONObject(userExtraData);
             RoleInfos roleInfo = new RoleInfos();
-            roleInfo.setInfoType(jsonObject.getInt("type"));// 这里为进入游戏是调用
+            roleInfo.setInfoType(jsonObject.getInt("infoType"));// 这里为进入游戏是调用
             roleInfo.setRoleId(jsonObject.getString("roleId"));
             roleInfo.setRoleLevel(jsonObject.getString("roleLevel"));
             roleInfo.setServerId(jsonObject.getString("serverId"));
@@ -197,6 +197,7 @@ public class QYSDK extends BaseSDK {
             roleInfo.setBalance(jsonObject.getString("balance"));
             roleInfo.setPartyName(jsonObject.getString("partyName"));
             roleInfo.setRoleUpLevelTime(jsonObject.getString("roleUpLevelTime"));
+            roleInfo.setVip(jsonObject.getString("vip"));
             QYManager.getInstace().sdkRoleInfo(roleInfo);
         } catch (JSONException e) {
             throw new RuntimeException(e);

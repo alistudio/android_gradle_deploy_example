@@ -193,7 +193,7 @@ public class MainActivity extends Activity {
         });
 
         /*上报*/
-        nativeAndroid.setExternalInterface("_onReport1", new INativePlayer.INativeInterface() {
+        nativeAndroid.setExternalInterface("_onReport", new INativePlayer.INativeInterface() {
             @Override
             public void callback(String message) {
                 Log.d(TAG, "Get message_onReport1: " + message);
