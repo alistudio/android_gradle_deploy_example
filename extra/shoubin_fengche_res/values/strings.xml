@@ -1,5 +1,8 @@
 <resources>
 
     <string name="app_name">cp_demo</string>
+    <string name="privacy_title">隐私协议</string>
+    <string name="privacy_exit">拒绝</string>
+    <string name="privacy_agree">同意</string>
 
 </resources>

@@ -11,9 +11,9 @@ android {
         versionName "1.0"
         flavorDimensions "versioncode"
         ndk {
-//            abiFilters 'armeabi','armeabi-v7a','arm64-v8a','x86'
+            abiFilters 'armeabi','armeabi-v7a','arm64-v8a','x86'
 //            abiFilters 'armeabi','armeabi-v7a','arm64-v8a'
-            abiFilters 'arm64-v8a'
+//            abiFilters 'arm64-v8a'
 
         }
     }
@@ -35,6 +35,7 @@ android {
 
     sourceSets.main{
         jniLibs.srcDir 'libs'
+        assets.srcDirs = ['../assets']
     }
 
     signingConfigs {
@@ -63,12 +64,12 @@ android {
 
     sourceSets {
         inner_test {
-            assets.srcDirs = ['../assets']
+//            assets.srcDirs = ['../assets']
 //            jniLibs.srcDirs = ['libs']
         }
         outer_test {
-            assets.srcDirs = ['../assets']
-            jniLibs.srcDirs = ['libs']
+//            assets.srcDirs = ['../assets']
+//            jniLibs.srcDirs = ['libs']
         }
         shoubin_fengche {
             manifest.srcFile '../extra/shoubin_fengche_AndroidManifest.xml'
@@ -110,7 +111,7 @@ android {
             manifestPlaceholders = [
                     CHANNEL_ID: "shoubin_fengche",
                     app_name:"三国将魂",
-                    icon:"@mipmap/ic_launcher",
+                    icon:"@drawable/ic_launcher",
                     sdk_name:"QYSDK",
                     index_version:"https://resource.jieyougame.com/newd6/qianyou_android_ttgame/"
             ]
@@ -144,7 +145,7 @@ gradle.startParameter.getTaskNames().each { task ->
 dependencies {
     implementation(name: 'egret', ext: 'aar')
 //    为方便sdk的接入开发，过程中条件控制语句暂时屏蔽，当接入完成，打开条件控制语句，忽略代码提示的报错，不影响出包
-    if (channel == "shoubin_fengche"){
+//    if (channel == "shoubin_fengche"){
         implementation fileTree(dir: '../extra/shoubin_fengche_libs', include: ['*.jar'])
-    }
+//    }
 }
