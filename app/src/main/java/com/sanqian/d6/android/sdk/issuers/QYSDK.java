@@ -54,13 +54,20 @@ public class QYSDK extends BaseSDK {
             public void onLogin(Object o, int i) {
                 if (0 == i){
                     CallbackInfo callbackInfo = (CallbackInfo) o;
-                    String resultStr = "{" + "'status'" + ":" + callbackInfo.statusCode + "," + "'zid'" + ":" + "%" + callbackInfo.userId + "%" + "," + "'platformUserId'" + ":" + "%" + callbackInfo.platformUserId + "%"
-                            + "," + "'channel'" + ":" + "%" + "sy" + "%" + "," + "'timeStamp'" + ":" + "%" + callbackInfo.timestamp + "%" + "," + "'dToken'" + ":" + "%" + callbackInfo.sign + "%" + "," + "'desc'" + ":" + "%" + callbackInfo.desc + "%" + ","
-                            + "'channelId'" + ":" + "%" + callbackInfo.platformId + "%" + "}";
+//                    String resultStr = "{" + "'status'" + ":" + callbackInfo.statusCode + "," + "'zid'" + ":" + "%" + callbackInfo.userId + "%" + "," + "'platformUserId'" + ":" + "%" + callbackInfo.platformUserId + "%"
+//                            + "," + "'channel'" + ":" + "%" + "sy" + "%" + "," + "'timeStamp'" + ":" + "%" + callbackInfo.timestamp + "%" + "," + "'dToken'" + ":" + "%" + callbackInfo.sign + "%" + "," + "'desc'" + ":" + "%" + callbackInfo.desc + "%" + ","
+//                            + "'channelId'" + ":" + "%" + callbackInfo.platformId + "%" + "}";
 
-                    JSONObject result = null;
+                    JSONObject result = new JSONObject();
                     try {
-                        result = new JSONObject(resultStr);
+                        result.put("status", callbackInfo.statusCode);
+                        result.put("zid", callbackInfo.userId);
+                        result.put("platformUserId", callbackInfo.platformUserId);
+                        result.put("channel", "sy");
+                        result.put("timeStamp", callbackInfo.timestamp);
+                        result.put("dToken", callbackInfo.sign);
+                        result.put("desc", callbackInfo.desc);
+                        result.put("channelId", callbackInfo.platformId);
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
