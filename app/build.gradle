@@ -60,6 +60,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
         }
+
+        //签名版release编译，用于出测试包
+        release_signed.initWith(release_unsigned)
+        release_signed {
+            signingConfig signingConfigs.config
+        }
     }
 
     sourceSets {
