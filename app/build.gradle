@@ -141,17 +141,11 @@ android {
     }
 }
 
-def channel = ""
-gradle.startParameter.getTaskNames().each { task ->
-    if (task.toLowerCase().contains("shoubin_fengche")) {
-        channel = "shoubin_fengche"
-    }
-}
-
 dependencies {
+    android.applicationVariants.all{variant->
+        if (variant.flavorName == "shoubin_fengche"){
+            implementation fileTree(dir: '../extra/shoubin_fengche_libs', include: ['*.jar'])
+        }
+    }
     implementation(name: 'egret', ext: 'aar')
-//    为方便sdk的接入开发，过程中条件控制语句暂时屏蔽，当接入完成，打开条件控制语句，忽略代码提示的报错，不影响出包
-//    if (channel == "shoubin_fengche"){
-        implementation fileTree(dir: '../extra/shoubin_fengche_libs', include: ['*.jar'])
-//    }
 }
