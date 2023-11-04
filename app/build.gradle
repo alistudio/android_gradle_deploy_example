@@ -88,10 +88,10 @@ android {
     productFlavors {
         //内网测试包
         inner_test {
+            applicationId "com.sanqian.newd6.sgjh.inner"
+            //versionCode 1
+            //versionName "1.0"
             manifestPlaceholders = [
-                    //applicationId "com.guangzhouqianyou.sanqian.d6"
-                    //versionCode 1
-                    //versionName "1.0"
                     CHANNEL_ID: "inner_test",
                     app_name:"三国将魂内网测试",
                     icon:"@mipmap/ic_launcher",
@@ -101,7 +101,7 @@ android {
         }
         //外网测试包
         outer_test {
-//            applicationId "com.guangzhouqianyou.sanqian.d6"
+            applicationId "com.sanqian.newd6.sgjh.outer"
             manifestPlaceholders = [
                     CHANNEL_ID: "outer_test",
                     app_name:"三国将魂外网测试",
@@ -143,9 +143,9 @@ android {
 
 dependencies {
     android.applicationVariants.all{variant->
+        implementation(name: 'egret', ext: 'aar')
         if (variant.flavorName == "shoubin_fengche"){
             implementation fileTree(dir: '../extra/shoubin_fengche_libs', include: ['*.jar'])
         }
     }
-    implementation(name: 'egret', ext: 'aar')
 }
