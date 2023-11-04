@@ -11,7 +11,6 @@ import com.sanqian.d6.android.MainActivity;
 import com.sanqian.d6.android.sdk.common.utils.RunGameJsUtil;
 import com.sanqian.d6.android.sdk.interfaces.ISDK;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -145,8 +144,8 @@ public abstract class BaseSDK implements ISDK {
     }
 
     @Override
-    public void onKeyDown(int keyCode) {
-
+    public boolean onKeyDown(int keyCode) {
+            return false;
 //        JSBridge.onKeyDown(keyCode);
     }
 

@@ -2,6 +2,7 @@ package com.sanqian.d6.android.sdk.issuers;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 
 import com.sanqian.d6.android.MainActivity;
 import com.sanqian.d6.android.sdk.BaseSDK;
@@ -99,6 +100,7 @@ public class QYSDK extends BaseSDK {
             @Override
             public void onExit(int i) {
                 if (0 == i){
+                    activity.nativeAndroid.exitGame();
                     QYManager.getInstace().sdkDestroy();
                     THIS.activity.finish();
                     android.os.Process.killProcess(android.os.Process.myPid());
@@ -149,7 +151,7 @@ public class QYSDK extends BaseSDK {
         try {
             QYPayInfo info = new QYPayInfo();
             JSONObject jsonObject = new JSONObject(payInfo);
-            info.setCpOrderId(jsonObject.getString("outOrderid"));
+            info.setCpOrderId(jsonObject.getString("cpOrderId"));
             info.setRoleId(jsonObject.getString("roleId"));
             info.setRoleName(jsonObject.getString("roleName"));
             info.setCallBackStr(jsonObject.getString("callBackStr"));
@@ -171,8 +173,8 @@ public class QYSDK extends BaseSDK {
 
     @Override
     public void exit() {
-        super.exit();
         QYManager.getInstace().sdkExit();
+        super.exit();
     }
 
     @Override
@@ -250,5 +252,14 @@ public class QYSDK extends BaseSDK {
     public void onDestroy() {
         super.onDestroy();
         QYManager.getInstace().sdkDestroy();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            this.exit();
+            return true;
+        }
+        return false;
     }
 }

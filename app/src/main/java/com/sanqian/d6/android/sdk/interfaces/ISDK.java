@@ -102,7 +102,7 @@ public interface ISDK {
     void onDestroy();
     void onClose();
 
-    void onKeyDown(int keyCode);
+    boolean onKeyDown(int keyCode);
 
     void onStop();
 

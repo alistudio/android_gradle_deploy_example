@@ -25,7 +25,7 @@ import java.util.Date;
 
 public class MainActivity extends Activity {
     private final String TAG = "MainActivity";
-    private EgretNativeAndroid nativeAndroid;
+    public EgretNativeAndroid nativeAndroid;
 
     public static BaseSDK curSDK;
     public static String sdkName;
@@ -140,11 +140,12 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onKeyDown(final int keyCode, final KeyEvent keyEvent) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            nativeAndroid.exitGame();
-        }
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            nativeAndroid.exitGame();
+//        }
+        return curSDK.onKeyDown(keyCode);
 
-        return super.onKeyDown(keyCode, keyEvent);
+//        return super.onKeyDown(keyCode, keyEvent);
     }
 
     private void setExternalInterfaces() {
