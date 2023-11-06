@@ -107,7 +107,7 @@ android {
                     app_name:"三国将魂外网测试",
                     icon:"@mipmap/ic_launcher",
                     sdk_name:"none",
-                    index_version:"http://play.dev.idlestack.com/newd6/android/index.html"
+                    index_version:"http://play.dev.idlestack.com/newd6/main/index.html"
             ]
         }
 
