@@ -33,7 +33,7 @@ public abstract class BaseSDK implements ISDK {
         this.initResult = result;
         deviceId = Settings.Secure.getString(this.activity.getContentResolver(),Settings.Secure.ANDROID_ID);
         RunGameJsUtil.run("_initSdk_success",result.toString());
-        Toast.makeText(this.activity,"初始化成功", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this.activity,"初始化成功", Toast.LENGTH_SHORT).show();
     }
 
 
