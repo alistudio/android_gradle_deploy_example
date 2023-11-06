@@ -113,6 +113,8 @@ android {
 
         //手柄，风车
         shoubin_fengche {
+            versionCode 2
+            versionName "1.0.1"
             applicationId "com.sanguojh_q.game"
             manifestPlaceholders = [
                     CHANNEL_ID: "shoubin_fengche",

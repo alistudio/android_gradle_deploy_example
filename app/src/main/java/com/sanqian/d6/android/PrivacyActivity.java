@@ -55,7 +55,6 @@ public class PrivacyActivity  extends Activity {
         //显示隐私内容，因为文本布局，需要美观，所以内容用需要使用换行符，但加载回来的内容用\n的话无法真正做到换行，只能在文本中用<br/>作为换行符，然后进行替换成\n
         TextView tv_content = (TextView) inflate.findViewById(R.id.tv_content);
         tv_content.setText(str.replace("<br/>", "\n"));
-
         //获取同意和退出两个按钮并且添加事件
         TextView btn_exit = (TextView) inflate.findViewById(R.id.btn_exit);
         TextView btn_enter = (TextView) inflate.findViewById(R.id.btn_enter);
