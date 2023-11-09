@@ -153,7 +153,7 @@ public class PrivacyActivity  extends Activity {
 
         for(int i = 0; i < this.permissions.length; ++i) {
             if (ContextCompat.checkSelfPermission(this, this.permissions[i]) != 0) {
-                this.mPermissionList.add(this.permissions[i]);
+                //this.mPermissionList.add(this.permissions[i]);
             }
         }
 
