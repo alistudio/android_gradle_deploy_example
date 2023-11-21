@@ -121,7 +121,7 @@ android {
                     app_name:"三国将魂",
                     icon:"@drawable/ic_launcher",
                     sdk_name:"QYSDK",
-                    index_version:"https://resource.jieyougame.com/newd6/qianyou_android_ttgame/"
+                    index_version:"https://center.jieyougame.com/newd6/qianyou_android_ttgame/index.html"
             ]
         }
     }
